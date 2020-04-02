@@ -77,15 +77,13 @@ void Student::setNumDays(int num_days[]) {
 	}
 }
 void Student::print() {
-	cout << left << setw(5) << studentID;
-	cout << left << setw(20) << firstName;
-	cout << left << setw(20) << lastName;
-	cout << left << setw(20) << emailAddress;
-	cout << left << setw(20) << age;
-	cout << left << setw(10) num_days[0];
-	cout << left << setw(10) num_days[1];
-	cout << left << setw(10) num_days[2];
 
+	// 1 [tab] First Name: John [tab] Last Name: Smith [tab] Age: 20 [tab]daysInCourse: {35, 40, 55} Degree Program: Security
+	cout << studentID;
+	cout << "\t" << "First Name: " << firstName;
+	cout << "\t" << "Last Name: " << lastName;
+	cout << "\t" << age;
+	cout << "\t" << "Days in course: {" << num_days[0] << "," << num_days[1] << "," << num_days[2] << "}\t";
 }
 
 Student::~Student() {

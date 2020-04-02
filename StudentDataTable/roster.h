@@ -3,60 +3,45 @@
 #define ROSTER_H
 #include <iostream>
 #include <string>
+#include "securityStudent.h"
+#include "networkStudent.h"
+#include "softwareStudent.h"
 #include "student.h"
 
 using namespace std;
 
+const int numStudents = 5;
+
+const string studentData[numStudents] = {
+
+    "A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY",
+    "A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK",
+    "A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE",
+    "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
+    "A5,Peter,D'Angelo,pdange1@wgu.edu,28,48,48,62,SOFTWARE"
+};
 
 //Stores roster of students.
 class Roster {
-
 private:
-    int size;               //Max number of students in the roster
-    int lastIndex;          //Index of final student in the roster.
-    Student** students;     //Array of pointers to students. 
+    int size;                       //Max number of students in the roster
+    int lastIndex;                  //Index of student in the roster.
+    Student** classRosterArray;     //Array of pointers to classRosterArray. 
 
 public:
     Roster();
-    Roster(int size);
+    Roster(int size); // Sets max size of roster.
+
+    Student* getStudentAt(int index);
+    void parser(string stringRowData);
+    void add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeType degree);
+    void remove(string studentID);
+    void printAll();
+    void printDaysInCourse(string studentID);
+    void printInvalidEmails();
+    void printByDegreeProgram(DegreeType degree);
+
 };
 
+
 #endif
-#include <string>
-#include <iostream>
-#include "student.h"
-#include "networkStudent.h"
-#include "securityStudent.h"
-#include "softwareStudent.h"
-#include "degree.h"
-
-using namespace std;
-
-//Parse through strings to build student data table Using a string parcer.
-
-//identify student
-
-//assign student type
-
-
-//F.  Demonstrate the program’s required functionality by adding a void main() function to roster.cpp, which will contain the required function calls to achieve the following results:
-
-//1.  Print out to the screen, via your application, the course title, the programming language used, your student ID, and your name.
-
-//2.  Create an instance of the Roster class called classRoster.
-
-//3.  Add each student to classRoster.
-
-//4.  Convert the following pseudo code to complete the rest of the main() function:
-/*
-classRoster.printAll();
-classRoster.printInvalidEmails();
-loop through classRosterArray and for each element:
-classRoster.printAverageDaysInCourse(//current_object's student id);
-classRoster.printByDegreeProgram(SOFTWARE);
-classRoster.remove("A3");
-classRoster.remove("A3");
-*/
-//expected: the above line should print a message saying such a student with this ID was not found.
-
-//5.  Call the destructor to release the Roster memory.

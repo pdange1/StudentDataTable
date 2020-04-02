@@ -5,7 +5,7 @@
 
 class NetworkStudent : public Student { //inherits from superclass Student.h
 
-	public:
+public:
 		NetworkStudent();
 		NetworkStudent
 		(

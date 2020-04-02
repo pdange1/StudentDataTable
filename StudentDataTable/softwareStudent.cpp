@@ -1,10 +1,11 @@
 #include "softwareStudent.h"
+#include "student.h"
 #include <iostream>;
 
 using namespace std;
 
 
-SoftwareStudent::SoftwareStudent() :Student() {
+SoftwareStudent::SoftwareStudent():Student() {
 
 	degree = SOFTWARE;
 };
@@ -29,6 +30,6 @@ void SoftwareStudent::print() {
 
 SoftwareStudent::~SoftwareStudent()
 {
-	Student::~Student;
+	Student::~Student();
 
 }

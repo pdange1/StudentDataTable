@@ -29,7 +29,7 @@ void NetworkStudent::print() {
 
 NetworkStudent::~NetworkStudent()
 {
-	Student::~Student;
+	Student::~Student();
 
 
 }

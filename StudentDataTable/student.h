@@ -49,7 +49,7 @@ public:
        void setFirstName(string firstName);
        void setLastName(string lastName);
        void setEmailAddress(string eAddress);
-       void setAge(int Age);
+       void setAge(int age);
        void setNumDays(int num_days[]);
 
        virtual void setDegreeProgram(DegreeType degree) = 0;

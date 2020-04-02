@@ -29,6 +29,6 @@ void SecurityStudent::print() {
 
 SecurityStudent::~SecurityStudent()
 {
-	Student::~Student;
+	Student::~Student();
 
 }
