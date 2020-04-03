@@ -22,16 +22,8 @@ public:
 
    public:
        Student();
-       Student
-       (
-           string ID, 
-           string firstName, 
-           string lastName, 
-           string eAddress, 
-           int Age, 
-           int num_days[], 
-           DegreeType degree
-       );
+       Student(string ID, string firstName, string lastName, string emailAddress, int age, int num_days[]);
+
 
        //getters i.e.. accessor for student.cpp
 

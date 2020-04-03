@@ -126,10 +126,38 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 
 }
 
+//Remove student ID from roster.
+bool Roster::remove(string studentID) {
+    bool found = false;
+    
+    for (int i = 0; i <= lastIndex; i++) {
+        if (this->classRosterArray[i]->getStudentID() == studentID) {
+            found = true;
+            //delete
+            delete this->classRosterArray[i];
+            //Assign last book to current position.
+            this->classRosterArray[i] = this->classRosterArray[lastIndex];
+            lastIndex--;
+        }
+        else {
+            bool found = false;
+            cout << "STUDENT NOT FOUND!";
+        }
+    }
+    return found;
+}
+
+//Print all students on roster.
 void Roster::printAll() {
     for (int i = 0; i <= this->lastIndex; i++) { //loop through each student in roster via last index and print all info.
-        this->classRosterArray[i]->print(); 
+        this->classRosterArray[i]->print();
     }
+}
+
+void Roster::printInvalidEmails(string emailAddress) {
+    if 
+}
+
 
 
 
@@ -146,27 +174,36 @@ void Roster::printAll() {
 
 
         //2.  Create an instance of the Roster class called classRoster.
-
         Roster* classRoster = new Roster(numStudents);
 
+        //3.  Add each student to classRoster.
         for (int i = 0; i < numStudents; i++) {
             classRoster->parser(studentData[i]);
+        }
 
-        };
+        cout << "DONE." << endl;
+        cout << "DISPLAYING ALL STUDENTS" << endl;
+        classRoster->printAll();
 
+        //Displaying invalid Emails
+        cout << "INVALID EMAIL ADDRESS" << endl;
+        classRoster.printInvalidEmails();
+        //loop through classRosterArray and for each element:
+        classRoster.printAverageDaysInCourse(/*current_object's student id*/);
+        classRoster.printByDegreeProgram(SOFTWARE);
+        classRoster.remove("A3");
+        classRoster.remove("A3");
+        //expected: the above line should print a message saying such a student with this ID was not found.
 
-        //3.  Add each student to classRoster.
-
+        5.  Call the destructor to release the Roster memory.
 
 
         //4.  Convert the following pseudo code to complete the rest of the main() function:
 
 
 
-        //expected: the above line should print a message saying such a student with this ID was not found.
-
         //5.  Call the destructor to release the Roster memory.
 
 
         return;
-    }
+    };

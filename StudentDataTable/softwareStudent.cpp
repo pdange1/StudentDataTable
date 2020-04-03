@@ -28,8 +28,8 @@ void SoftwareStudent::print() {
 	cout << "FICTION" << endl;
 }
 
-SoftwareStudent::~SoftwareStudent()
-{
+SoftwareStudent::~SoftwareStudent() {
+
 	Student::~Student();
 
 }

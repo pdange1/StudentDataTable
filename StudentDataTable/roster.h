@@ -26,8 +26,7 @@ class Roster {
 private:
     int size;                       //Max number of students in the roster
     int lastIndex;                  //Index of student in the roster.
-    Student** classRosterArray;     //Array of pointers to classRosterArray. 
-
+    Student** classRosterArray;     //Array of pointers to student.
 public:
     Roster();
     Roster(int size); // Sets max size of roster.
@@ -35,7 +34,7 @@ public:
     Student* getStudentAt(int index);
     void parser(string stringRowData);
     void add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeType degree);
-    void remove(string studentID);
+    bool remove(string studentID);
     void printAll();
     void printDaysInCourse(string studentID);
     void printInvalidEmails();
