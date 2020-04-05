@@ -14,7 +14,7 @@ public:
 		string lastName,
 		string emailAddress,
 		int age,
-		int* num_days[],
+		int num_days[],
 		DegreeType degree
 	);
 

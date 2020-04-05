@@ -1,17 +1,17 @@
 #include "softwareStudent.h"
 #include "student.h"
-#include <iostream>;
+
 
 using namespace std;
 
 
-SoftwareStudent::SoftwareStudent():Student() {
+SoftwareStudent::SoftwareStudent() :Student() {
 
 	degree = SOFTWARE;
-};
+}
 
-SoftwareStudent::SoftwareStudent(string studentID, string firstName, string lastName, string emailAddress, int age, int* num_days[], DegreeType degree)
-	:Student(studentID, firstName, lastName, emailAddress, age, num_days)
+SoftwareStudent::SoftwareStudent(string studentID, string firstName, string lastName, string emailAddress, int age, int num_days[], DegreeType degree) 
+	: Student(studentID, firstName, lastName, emailAddress, age, num_days)
 {
 
 	degree = SOFTWARE;
@@ -25,11 +25,12 @@ DegreeType SoftwareStudent::getDegreeProgram() {
 void SoftwareStudent::print() {
 
 	this->Student::print();
-	cout << "FICTION" << endl;
+	cout << DegreeTypeStrings[2] << endl;
 }
 
-SoftwareStudent::~SoftwareStudent() {
-
+SoftwareStudent::~SoftwareStudent()
+{
 	Student::~Student();
+
 
 }

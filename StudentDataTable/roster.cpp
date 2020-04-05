@@ -61,7 +61,7 @@ void Roster::parser(string row) {
         string firstName = row.substr(lhs, rhs - lhs);
 
         //Read last name of student
-        int lhs = rhs + 1;
+        lhs = rhs + 1;
         rhs = row.find(",", lhs);
         string lastName = row.substr(lhs, rhs - lhs);
 
@@ -133,6 +133,7 @@ bool Roster::remove(string studentID) {
     for (int i = 0; i <= lastIndex; i++) {
         if (this->classRosterArray[i]->getStudentID() == studentID) {
             found = true;
+
             //delete
             delete this->classRosterArray[i];
             //Assign last book to current position.
@@ -150,19 +151,47 @@ bool Roster::remove(string studentID) {
 //Print all students on roster.
 void Roster::printAll() {
     for (int i = 0; i <= this->lastIndex; i++) { //loop through each student in roster via last index and print all info.
-        this->classRosterArray[i]->print();
+        (this->classRosterArray)[i]->print();
     }
 }
 
-void Roster::printInvalidEmails(string emailAddress) {
-    if 
+void Roster::printInvalidEmails() {
+    for (int i = 0; i <= lastIndex; i++) {
+        string email = classRosterArray[i]->getEmailAddress();
+            if ((email.find('@') == string::npos) || (email.find(' ') == string::npos) || (email.find('.')) == string::npos) {
+                cout << "The student email for " << classRosterArray[i]->getFirstName() << " " << classRosterArray[i]->getLastName() << " is invalid.\n";
+            }
+    }
+}
+void Roster::printAverageDaysInCourse(string studentID) {
+
+    bool found = false;
+    for (int i = 0; i <= lastIndex; i++) {
+        
+        if (this->classRosterArray[i]->getStudentID() == studentID) {
+            found = true;
+            int* days = classRosterArray[i]->getNumDays();
+            cout << "Average number of days left in course " << studentID << " is " << (days[0] + days[1] + days[2]) / 3 << endl;
+
+        }
+    }
+    if (!found) {
+        cout << "Student ID not found." << endl;
+    }
 }
 
+Roster::~Roster()
+{
+    for (int i = 0; i <= lastIndex; i++) {
+        delete this->classRosterArray[i];
+    }
+    delete classRosterArray;
+}
 
 
 
 //F.  Demonstrate the program’s required functionality by adding a void main() function to roster.cpp, which will contain the required function calls to achieve the following results:
-    void main() {
+    int main() {
 
         /*1.  Print out to the screen, via your application, the course title, the programming language used, your student ID, and your name.*/
         cout << "     ---===|     Course Title     |===---" << endl;
@@ -180,22 +209,30 @@ void Roster::printInvalidEmails(string emailAddress) {
         for (int i = 0; i < numStudents; i++) {
             classRoster->parser(studentData[i]);
         }
-
         cout << "DONE." << endl;
-        cout << "DISPLAYING ALL STUDENTS" << endl;
-        classRoster->printAll();
 
+        cout << "DISPLAYING ALL STUDENTS ON ROSTER." << endl;
+        for (int i = 0; i < numStudents; i++) {
+            classRoster->printAll();
+        }
+
+        /*verifies student email addresses and displays all invalid email addresses to the user
+        Note: A valid email should include an at sign ('@') and period ('.') and should not include a space (' ').*/
         //Displaying invalid Emails
+        classRoster->printInvalidEmails();
         cout << "INVALID EMAIL ADDRESS" << endl;
-        classRoster.printInvalidEmails();
+       
         //loop through classRosterArray and for each element:
-        classRoster.printAverageDaysInCourse(/*current_object's student id*/);
-        classRoster.printByDegreeProgram(SOFTWARE);
-        classRoster.remove("A3");
-        classRoster.remove("A3");
-        //expected: the above line should print a message saying such a student with this ID was not found.
+        for (int i = 0; i < numStudents; i++) {
+            classRoster->printAverageDaysInCourse(classRoster->getStudentAt(i)->getStudentID());
+        }
 
-        5.  Call the destructor to release the Roster memory.
+        for (int i = 0; i < 3; i++) {
+            classRoster->printByDegreeProgram((DegreeType)i);
+        }
+        classRoster->remove("A3");
+        classRoster->remove("A3");
+        //expected: the above line should print a message saying such a student with this ID was not found.
 
 
         //4.  Convert the following pseudo code to complete the rest of the main() function:
@@ -203,7 +240,10 @@ void Roster::printInvalidEmails(string emailAddress) {
 
 
         //5.  Call the destructor to release the Roster memory.
+       
+        system("pause");
 
+        classRoster->~Roster();
 
-        return;
+        return 0;
     };

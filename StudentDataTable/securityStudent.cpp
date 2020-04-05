@@ -1,16 +1,20 @@
 #include "securityStudent.h"
-#include <iostream>;
+#include "student.h"
+
+
+
 
 using namespace std;
+
 
 
 SecurityStudent::SecurityStudent() :Student() {
 
 	degree = SECURITY;
-};
+}
 
-SecurityStudent::SecurityStudent(string studentID, string firstName, string lastName, string emailAddress, int age, int* num_days[], DegreeType degree)
-	:Student(studentID, firstName, lastName, emailAddress, age, num_days)
+SecurityStudent::SecurityStudent(string studentID, string firstName, string lastName, string emailAddress, int age, int num_days[], DegreeType degree) 
+	: Student(studentID, firstName, lastName, emailAddress, age, num_days)
 {
 
 	degree = SECURITY;
@@ -18,17 +22,18 @@ SecurityStudent::SecurityStudent(string studentID, string firstName, string last
 
 DegreeType SecurityStudent::getDegreeProgram() {
 
-	return ;
+	return SECURITY;
 }
 
 void SecurityStudent::print() {
 
 	this->Student::print();
-	cout << "FICTION" << endl;
+	cout << DegreeTypeStrings[0] << endl;
 }
 
 SecurityStudent::~SecurityStudent()
 {
 	Student::~Student();
+
 
 }

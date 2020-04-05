@@ -36,10 +36,11 @@ public:
     void add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeType degree);
     bool remove(string studentID);
     void printAll();
-    void printDaysInCourse(string studentID);
-    void printInvalidEmails();
+    void printAverageDaysInCourse(string studentID);
+    void printInvalidEmails(/*string studentID, string emailAddress*/);
     void printByDegreeProgram(DegreeType degree);
 
+    ~Roster();
 };
 
 
