@@ -33,15 +33,18 @@ void Roster::parser(string row) {
         lastIndex++;
         DegreeType degree;
         if (row.substr(row.length() - 8, 8) == "SOFTWARE") {
-            degree = SOFTWARE;
+            degree = DegreeType::SOFTWARE;
+            classRosterArray[lastIndex]->setDegreeProgram(DegreeType::SOFTWARE);
         }
 
         else if (row.substr(row.length() - 7, 7) == "NETWORK") {
-            degree = NETWORK;
+            degree = DegreeType::NETWORK;
+            classRosterArray[lastIndex]->setDegreeProgram(DegreeType::NETWORK);
         }
 
         else if (row.substr(row.length() - 8, 8) == "SECURITY") {
-            degree = SECURITY;
+            degree = DegreeType::SECURITY;
+            classRosterArray[lastIndex]->setDegreeProgram(DegreeType::SECURITY);
         }
 
         else {
@@ -90,11 +93,6 @@ void Roster::parser(string row) {
         rhs = row.find(",", lhs);
         int daysInCourse3 = stoi(row.substr(lhs, rhs - lhs));
 
-        //Read student reamaining class days for class 3 and convert to int.
-        lhs = rhs + 1;
-        rhs = row.find(",", lhs);
-        int daysInCourse3 = stoi(row.substr(lhs, rhs - lhs));
-
         
 
         add(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degree);
@@ -114,15 +112,16 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
     numDays[0] = daysInCourse1;
     numDays[1] = daysInCourse2;
     numDays[2] = daysInCourse3;
-    if (degree == NETWORK) {
+    if (degree == DegreeType::NETWORK) {
         classRosterArray[lastIndex] = new NetworkStudent(studentID, firstName, lastName, emailAddress, age, numDays, degree);
     }
-    else if (degree == NETWORK) {
+    else if (degree == DegreeType::SECURITY) {
         classRosterArray[lastIndex] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, numDays, degree);
     }
-    else if (degree == NETWORK) {
+    else if (degree == DegreeType::SOFTWARE) {
         classRosterArray[lastIndex] = new SoftwareStudent(studentID, firstName, lastName, emailAddress, age, numDays, degree);
     }
+    
 
 }
 

@@ -1,9 +1,10 @@
 //.cpp FILE TEMPLATE
 
 #include <iostream>
+#include <string>
 #include "student.h"
 #include "degree.h"
-#include <string>
+
 
 using namespace std;
 

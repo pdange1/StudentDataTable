@@ -37,7 +37,7 @@ public:
     bool remove(string studentID);
     void printAll();
     void printAverageDaysInCourse(string studentID);
-    void printInvalidEmails(/*string studentID, string emailAddress*/);
+    void printInvalidEmails();
     void printByDegreeProgram(DegreeType degree);
 
     ~Roster();

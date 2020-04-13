@@ -1,5 +1,6 @@
 #ifndef NETWORKSTUDENT_H
 #define NETWORKSTUDENT_H
+#include <iostream>
 #include <string>
 #include "student.h"
 

@@ -1,5 +1,6 @@
 #ifndef SOFTWARESTUDENT_H
 #define SOFTWARESTUDENT_H
+#include <iostream>
 #include <string>
 #include "student.h"
 

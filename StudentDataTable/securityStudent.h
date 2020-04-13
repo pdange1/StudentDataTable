@@ -1,5 +1,6 @@
 #ifndef SECURITYSTUDENT_H
 #define SECURITYTUDENT_H
+#include <iostream>
 #include <string>
 #include "student.h"
 
