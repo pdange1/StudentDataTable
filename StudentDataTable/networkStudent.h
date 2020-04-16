@@ -7,7 +7,7 @@
 class NetworkStudent : public Student { //inherits from superclass Student.h
 
 public:
-		NetworkStudent();
+
 		NetworkStudent
 		(
 			string studentID,
@@ -22,7 +22,8 @@ public:
 			DegreeType getDegreeProgram();
 			void print();
 
-			~NetworkStudent();
+private:
+	DegreeType degree;// refers to degree.h for enum data type to get degree.
 };
 
 #endif

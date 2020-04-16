@@ -1,3 +1,4 @@
+#pragma once
 #ifndef SECURITYSTUDENT_H
 #define SECURITYTUDENT_H
 #include <iostream>
@@ -7,7 +8,7 @@
 class SecurityStudent : public Student { //inherits from superclass Student.h
 
 public:
-	SecurityStudent();
+
 	SecurityStudent
 	(
 		string studentID,
@@ -22,7 +23,11 @@ public:
 	DegreeType getDegreeProgram();
 	void print();
 
-	~SecurityStudent();
+private: 
+	DegreeType degree; // refers to degree.h for enum data type to get degree.
+
+
 };
 
 #endif
+

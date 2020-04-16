@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <string>
 #include "securityStudent.h"
@@ -10,33 +11,24 @@
 using namespace std;
 
 
-
-	SecurityStudent::SecurityStudent() :Student() {
-
-		degree = DegreeType::SECURITY;
-	}
-
-	SecurityStudent::SecurityStudent(string studentID, string firstName, string lastName, string emailAddress, int age, int num_days[], DegreeType degree)
+	SecurityStudent::SecurityStudent(string studentID, string firstName, string lastName, string emailAddress, int age, int num_days[], DegreeType d)
 		: Student(studentID, firstName, lastName, emailAddress, age, num_days)
 	{
-
-		degree = DegreeType::SECURITY;
+		degree = d;
 	}
 
 	DegreeType SecurityStudent::getDegreeProgram() {
 
-		return DegreeType::SECURITY;
+		return degree;
 	}
 
 	void SecurityStudent::print() {
 
-		this->Student::print();
+		cout << getStudentID();
+		cout << "\t" << "First Name: " << getFirstName();
+		cout << "\t" << "Last Name: " << getLastName();
+		cout << "\t" << getAge();
+		cout << "\t" << "Days in course: {" << getNumDays()[0] << "," << getNumDays()[1] << "," << getNumDays()[2] << "}\t";
 		cout << DegreeTypeStrings[0] << endl;
 	}
 
-	SecurityStudent::~SecurityStudent()
-	{
-		Student::~Student();
-
-
-	}

@@ -10,14 +10,14 @@ class Student {
 public:
     const static int dayArraySize = 3; //size of array holding remaining course days. 
 
-   protected:                          //These items are visible to derived classes.
+   private:                          //These items are visible to derived classes.
         string studentID;
         string firstName;
         string lastName;
         string emailAddress;
         int    age;
         int    num_days[dayArraySize];   //array of number of days remaining in courses referencing const dayArraySize.
-        DegreeType degree;            // refers to degree.h for enum data type to get degree.
+
         
 
    public:
@@ -44,7 +44,6 @@ public:
        void setAge(int age);
        void setNumDays(int num_days[]);
 
-       virtual void setDegreeProgram(DegreeType degree) = 0;
        virtual void print() = 0; //Virtual method used to print object info to to command prompt.
 
 

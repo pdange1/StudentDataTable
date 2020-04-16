@@ -34,17 +34,14 @@ void Roster::parser(string row) {
         DegreeType degree;
         if (row.substr(row.length() - 8, 8) == "SOFTWARE") {
             degree = DegreeType::SOFTWARE;
-            classRosterArray[lastIndex]->setDegreeProgram(DegreeType::SOFTWARE);
         }
 
         else if (row.substr(row.length() - 7, 7) == "NETWORK") {
             degree = DegreeType::NETWORK;
-            classRosterArray[lastIndex]->setDegreeProgram(DegreeType::NETWORK);
         }
 
         else if (row.substr(row.length() - 8, 8) == "SECURITY") {
             degree = DegreeType::SECURITY;
-            classRosterArray[lastIndex]->setDegreeProgram(DegreeType::SECURITY);
         }
 
         else {
@@ -115,9 +112,9 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
     if (degree == DegreeType::NETWORK) {
         classRosterArray[lastIndex] = new NetworkStudent(studentID, firstName, lastName, emailAddress, age, numDays, degree);
     }
-    else if (degree == DegreeType::SECURITY) {
-        classRosterArray[lastIndex] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, numDays, degree);
-    }
+   else if (degree == DegreeType::SECURITY) {
+       classRosterArray[lastIndex] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, numDays, degree);
+   }
     else if (degree == DegreeType::SOFTWARE) {
         classRosterArray[lastIndex] = new SoftwareStudent(studentID, firstName, lastName, emailAddress, age, numDays, degree);
     }
@@ -127,22 +124,28 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 
 //Remove student ID from roster.
 bool Roster::remove(string studentID) {
+    cout << "Searching for student " << studentID << "...";
     bool found = false;
     
     for (int i = 0; i <= lastIndex; i++) {
         if (this->classRosterArray[i]->getStudentID() == studentID) {
             found = true;
 
+            cout << "Student " << studentID << " found. Removing student " << this->classRosterArray[i]->getStudentID() << "." << endl;
             //delete
             delete this->classRosterArray[i];
             //Assign last book to current position.
             this->classRosterArray[i] = this->classRosterArray[lastIndex];
             lastIndex--;
+            break;
         }
-        else {
-            bool found = false;
-            cout << "STUDENT NOT FOUND!";
-        }
+       else {
+            found = false;
+            
+       }
+    }
+    if (found == false) {
+        cout << "Student Not Found." << endl;
     }
     return found;
 }
@@ -156,9 +159,12 @@ void Roster::printAll() {
 
 void Roster::printInvalidEmails() {
     for (int i = 0; i <= lastIndex; i++) {
-        string email = classRosterArray[i]->getEmailAddress();
-            if ((email.find('@') == string::npos) || (email.find(' ') == string::npos) || (email.find('.')) == string::npos) {
-                cout << "The student email for " << classRosterArray[i]->getFirstName() << " " << classRosterArray[i]->getLastName() << " is invalid.\n";
+            string email = classRosterArray[i]->getEmailAddress();
+            if ((email.find('@') == string::npos) || (email.find(' ') != string::npos) || (email.find('.')) == string::npos) {
+                cout << "The student email: " << classRosterArray[i]->getEmailAddress() <<  " for " << classRosterArray[i]->getFirstName() << " " << classRosterArray[i]->getLastName() << " is invalid.\n";
+            }
+            else {
+                cout << "The student email: " << classRosterArray[i]->getEmailAddress() << " for " << classRosterArray[i]->getFirstName() << " " << classRosterArray[i]->getLastName() << " is valid.\n";
             }
     }
 }
@@ -173,9 +179,17 @@ void Roster::printAverageDaysInCourse(string studentID) {
             cout << "Average number of days left in course " << studentID << " is " << (days[0] + days[1] + days[2]) / 3 << endl;
 
         }
+
     }
-    if (!found) {
-        cout << "Student ID not found." << endl;
+
+}
+
+void Roster::printByDegreeProgram(int d) {
+    cout << "Printing students of type " << DegreeTypeStrings[d] << endl;
+    for (int i = 0; i <= lastIndex; i++) {
+        if (this->classRosterArray[i]->getDegreeProgram() == d) {
+            this->classRosterArray[i]->print();
+        }
     }
 }
 
@@ -193,8 +207,9 @@ Roster::~Roster()
     int main() {
 
         /*1.  Print out to the screen, via your application, the course title, the programming language used, your student ID, and your name.*/
+        cout << endl << endl << endl;
         cout << "     ---===|     Course Title     |===---" << endl;
-        cout << "Scripting and Programming - Applications – C867" << endl << endl;
+        cout << "Scripting and Programming - Applications: C867" << endl << endl;
         cout << "     ---===| Programming Language |===---" << endl;
         cout << "                    C++" << endl << endl;
         cout << "     ---===| Student Name and ID  |===---" << endl;
@@ -208,33 +223,32 @@ Roster::~Roster()
         for (int i = 0; i < numStudents; i++) {
             classRoster->parser(studentData[i]);
         }
-        cout << "DONE." << endl;
 
-        cout << "DISPLAYING ALL STUDENTS ON ROSTER." << endl;
-        for (int i = 0; i < numStudents; i++) {
+        cout << "DISPLAYING ALL STUDENTS ON ROSTER." << endl << endl;
+
             classRoster->printAll();
-        }
+            cout << endl;
+
 
         /*verifies student email addresses and displays all invalid email addresses to the user
         Note: A valid email should include an at sign ('@') and period ('.') and should not include a space (' ').*/
         //Displaying invalid Emails
         classRoster->printInvalidEmails();
-        cout << "INVALID EMAIL ADDRESS" << endl;
+        cout << endl;
        
         //loop through classRosterArray and for each element:
+        cout << "AVERAGE COURSE DAYS" << endl;
         for (int i = 0; i < numStudents; i++) {
             classRoster->printAverageDaysInCourse(classRoster->getStudentAt(i)->getStudentID());
         }
+        cout << endl;
+        classRoster->printByDegreeProgram(SOFTWARE);
 
-        for (int i = 0; i < 3; i++) {
-            classRoster->printByDegreeProgram((DegreeType)i);
-        }
         classRoster->remove("A3");
+        cout << endl;
         classRoster->remove("A3");
+        cout << endl;
         //expected: the above line should print a message saying such a student with this ID was not found.
-
-
-        //4.  Convert the following pseudo code to complete the rest of the main() function:
 
 
 
