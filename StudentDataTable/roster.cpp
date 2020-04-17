@@ -123,7 +123,7 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 }
 
 //Remove student ID from roster.
-bool Roster::remove(string studentID) {
+void Roster::remove(string studentID) {
     cout << "Searching for student " << studentID << "...";
     bool found = false;
     
@@ -147,7 +147,7 @@ bool Roster::remove(string studentID) {
     if (found == false) {
         cout << "Student Not Found." << endl;
     }
-    return found;
+    return;
 }
 
 //Print all students on roster.
@@ -243,6 +243,7 @@ Roster::~Roster()
         }
         cout << endl;
         classRoster->printByDegreeProgram(SOFTWARE);
+        cout << endl;
 
         classRoster->remove("A3");
         cout << endl;
